@@ -1,9 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class NegociacoesDoDia
+    public class CoinDataRegisterSearch
     {
+        
+        public int Id { get; set; }
+        public string Coin { get; set; }
         /// <summary>
         /// Maior preço unitário de negociação das últimas 24 horas.
         /// </summary>

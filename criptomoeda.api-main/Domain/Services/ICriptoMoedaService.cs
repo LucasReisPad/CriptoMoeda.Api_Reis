@@ -12,5 +12,8 @@ namespace Domain.Services
         ///     Informações com o resumo das últimas 24 horas de negociações.
         /// </returns>
         Task<NegociacoesDoDia> ObterDadosNegociacoesDoDiaAsync(string siglaMoeda);
+        Task UpsertCoinDataAsync(CoinData coinData);
+        Task<IEnumerable<CoinDataRegisterSearch>> GetCoinDataRegisterSearchAsync(string siglaMoeda);
+        Task<CoinData> GetCoinDataAtt(string siglaMoeda); 
     }
 }

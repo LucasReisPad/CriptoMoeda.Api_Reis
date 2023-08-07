@@ -1,4 +1,5 @@
-﻿using Domain.Adapters;
+﻿using DataAcess.Data;
+using Domain.Adapters;
 using Domain.Models;
 using Domain.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -13,11 +14,13 @@ namespace Application.Tests
     {
         private readonly ICriptoMoedaService criptoMoedaService;
         private readonly Mock<IMercadoBitcoinAdapter> mercadoBitcoinAdapterMock;
+        
 
         public CriptoMoedaTests()
         {
             mercadoBitcoinAdapterMock = new Mock<IMercadoBitcoinAdapter>();
             criptoMoedaService = new CriptoMoedaService(mercadoBitcoinAdapterMock.Object);
+            
         }
 
         [TestMethod]

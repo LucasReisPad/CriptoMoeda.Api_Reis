@@ -26,6 +26,7 @@ namespace baseMap
             public MappingProfile()
             {
                 CreateMap<NegociacoesDoDia, NegociacoesDoDiaGetResult>();
+                CreateMap<NegociacoesDoDia,CoinData>().ReverseMap();
             }
         }
     }
