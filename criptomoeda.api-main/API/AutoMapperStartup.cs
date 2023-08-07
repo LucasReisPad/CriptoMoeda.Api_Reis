@@ -27,6 +27,7 @@ namespace baseMap
             {
                 CreateMap<NegociacoesDoDia, NegociacoesDoDiaGetResult>();
                 CreateMap<NegociacoesDoDia,CoinData>().ReverseMap();
+                CreateMap<NegociacoesDoDia, CoinDataRegisterSearch>().ReverseMap();
             }
         }
     }

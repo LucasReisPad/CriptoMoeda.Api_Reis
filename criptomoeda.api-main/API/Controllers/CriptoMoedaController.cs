@@ -63,7 +63,11 @@ namespace CriptoMoeda.Api.Controllers
             var coinData = mapper.Map<CoinData>(resultado);
             coinData.Coin = siglaMoeda;
 
-            await criptoMoedaService.UpsertCoinDataAsync(coinData);
+            var SearchData = mapper.Map<CoinDataRegisterSearch>(resultado);
+            SearchData.Coin = siglaMoeda;
+
+            await criptoMoedaService.UpsertCoinDataAsync(coinData, SearchData);
+            
 
             return NoContent();
         }

@@ -19,32 +19,20 @@ namespace Application
             _db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
-        public async Task UpsertCoinDataAsync(CoinData coinData)
+        public async Task UpsertCoinDataAsync(CoinData coinData, CoinDataRegisterSearch searchData)
         {
             var coinFromDb = _db.CoinDatas.AsNoTracking().FirstOrDefault(x => x.Coin == coinData.Coin);
-            var registerCoin = new CoinDataRegisterSearch()
-            {
-                Coin = coinData.Coin,
-                MaiorPreco = coinData.MaiorPreco,
-                MenorPreco = coinData.MenorPreco,
-                QuantidadeNegociada = coinData.QuantidadeNegociada,
-                PrecoUnitario = coinData.PrecoUnitario,
-                MaiorPrecoOfertado = coinData.MaiorPrecoOfertado,
-                MenorPrecoOfertado = coinData.MenorPrecoOfertado,
-                DataHora = coinData.DataHora
-
-            };
-
+            
             if (coinFromDb == null)
             {
                 await _db.CoinDatas.AddAsync(coinData);
-                await _db.RegisterSearches.AddAsync(registerCoin);
+                await _db.RegisterSearches.AddAsync(searchData);
                 await _db.SaveChangesAsync();
             }
             else
             {
                 coinData.Id = coinFromDb.Id;
-                await _db.RegisterSearches.AddAsync(registerCoin);
+                await _db.RegisterSearches.AddAsync(searchData);
                 _db.CoinDatas.Update(coinData);
                 await _db.SaveChangesAsync();
             }
